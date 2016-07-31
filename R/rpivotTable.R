@@ -136,7 +136,7 @@ params <- c(params, par)
       x,
       width = width,
       height = height,
-      package = 'rpivotTable'
+      package = 'rpivotNoUI'
     )
 }
 
@@ -155,7 +155,7 @@ params <- c(params, par)
 #' 
 #' @export
 rpivotTableOutput <- function(outputId, width = '100%', height = '500px'){
-    shinyWidgetOutput(outputId, 'rpivotTable', width, height, package = 'rpivotTable')
+    shinyWidgetOutput(outputId, 'rpivotTable', width, height, package = 'rpivotNoUI')
 }
 
 #' Widget render function for use in Shiny
