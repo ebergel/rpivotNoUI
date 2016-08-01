@@ -74,7 +74,7 @@
 #'
 #' @export
 
-rpivotTable <- function(
+rpivotTableNoUI <- function(
     data,
     rows = NULL,
     cols = NULL,
@@ -132,7 +132,7 @@ params <- c(params, par)
     )
 
     htmlwidgets::createWidget(
-      name = 'rpivotTable',
+      name = 'rpivotTable2',
       x,
       width = width,
       height = height,
@@ -154,8 +154,12 @@ params <- c(params, par)
 #' 
 #' 
 #' @export
-rpivotTableOutput <- function(outputId, width = '100%', height = '500px'){
-    shinyWidgetOutput(outputId, 'rpivotTable', width, height, package = 'rpivotNoUI')
+rpivotTableOutputNoUI <- function(outputId, width = '100%', height = '500px'){
+    shinyWidgetOutput(outputId = outputId
+                      , name = 'rpivotTable2'
+                      , width = width
+                      , height = height
+                      , package = 'rpivotNoUI')
 }
 
 #' Widget render function for use in Shiny
@@ -177,7 +181,7 @@ rpivotTableOutput <- function(outputId, width = '100%', height = '500px'){
 #' 
 #' 
 #' @export
-renderRpivotTable <- function(expr, env = parent.frame(), quoted = FALSE) {
+renderRpivotTableNoUI <- function(expr, env = parent.frame(), quoted = FALSE) {
     if (!quoted) { expr <- substitute(expr) } # force quoted
     shinyRenderWidget(expr, rpivotTableOutput, env, quoted = TRUE)
 }

@@ -1,6 +1,6 @@
 HTMLWidgets.widget({
 
-    name: 'rpivotTable',
+    name: 'rpivotTable2',
 
     type: 'output',
 
