@@ -86,8 +86,8 @@ HTMLWidgets.widget({
        $('#'+el.id).pivot( 
                x.data ,
               {
-                  rows: [ x.params.rows ],
-                  cols: [ x.params.cols ],
+                  rows:   x.params.rows  ,
+                  cols:   x.params.cols  ,
                   aggregator: nui_aggregator,
                   renderer:   nui_renderer
               } 
