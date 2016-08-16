@@ -57,31 +57,49 @@ HTMLWidgets.widget({
       
       
       //AGGREGATOR   
-       if ( x.params.nui_aggregator == "count" ||  x.params.nui_aggregator == "undefined") { 
-          var nui_aggregator = undefined
-          
-       } else if ( x.params.nui_aggregator == "sum") {
-          var fx = $.pivotUtilities.aggregatorTemplates.sum;
-          var numberFormat = $.pivotUtilities.numberFormat;
-          var intFormat = numberFormat({digitsAfterDecimal: 0});  
-          var nui_aggregator = fx(intFormat)([x.params.vals]);
-          
-       } else if ( x.params.nui_aggregator == "average") {
+      
+ 
+       var digits = 3
+       if ( x.params.nui_aggregator == "Sum") {
+          var fx = $.pivotUtilities.aggregatorTemplates.sum; 
+       } else if ( x.params.nui_aggregator == "Average") {
           var fx = $.pivotUtilities.aggregatorTemplates.average;
-          var numberFormat = $.pivotUtilities.numberFormat;
-          var intFormat = numberFormat({digitsAfterDecimal: 1});  
-          var nui_aggregator = fx(intFormat)([x.params.vals]);
+          var digits = 1
+          //var intFormat = numberFormat({digitsAfterDecimal: 1});  
+          //var nui_aggregator = fx(intFormat)([x.params.vals]); 
+       } 
+       
+       if (typeof fx != 'undefined'){
+          var numberFormat = $.pivotUtilities.numberFormat;  
+          var intFormat = numberFormat({digitsAfterDecimal: digits});  
+          var nui_aggregator = fx(intFormat)([x.params.vals]); 
        }
+   
  
  
       //renderer   
-       if (  x.params.nui_renderer == "undefined") { 
-          var nui_renderer = undefined
-          
-       } else if ( x.params.nui_renderer == "heatmap") { 
+       if ( x.params.nui_renderer == "Table Barchart") { 
+           var nui_renderer =  $.pivotUtilities.renderers["Table Barchart"];  
+       } else if ( x.params.nui_renderer == "Heatmap") { 
            var nui_renderer =  $.pivotUtilities.renderers["Heatmap"];  
+       } else if ( x.params.nui_renderer == "Row Heatmap") { 
+           var nui_renderer =  $.pivotUtilities.renderers["Row Heatmap"];            
+       } else if ( x.params.nui_renderer == "Col Heatmap") { 
+           var nui_renderer =  $.pivotUtilities.renderers["Col Heatmap"];             
+       } else if ( x.params.nui_renderer == "Treemap") { 
+           var nui_renderer =  $.pivotUtilities.renderers["Treemap"];             
+       } else if ( x.params.nui_renderer == "Line Chart") { 
+           var nui_renderer =  $.pivotUtilities.renderers["Line Chart"];             
+       } else if ( x.params.nui_renderer == "Bar Chart") { 
+           var nui_renderer =  $.pivotUtilities.renderers["Bar Chart"];             
+       } else if ( x.params.nui_renderer == "Stacked Bar Chart") { 
+           var nui_renderer =  $.pivotUtilities.renderers["Stacked Bar Chart"];  
+       } else if ( x.params.nui_renderer == "Area chart") { 
+           var nui_renderer =  $.pivotUtilities.renderers["Area chart"];             
+       } else if ( x.params.nui_renderer == "Scatter Chart") { 
+           var nui_renderer =  $.pivotUtilities.renderers["Scatter Chart"];              
        }  
- 
+           
  
        $('#'+el.id).pivot( 
                x.data ,
